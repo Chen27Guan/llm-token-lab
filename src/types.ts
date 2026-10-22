@@ -1,0 +1,10 @@
+export type Candidate={token:string;logprob:number;probability:number};
+export type Token={index:number;text:string;token_id:number|null;bytes:number[]|null;logprob:number|null;probability:number|null;candidates:Candidate[];arrival_ms:number|null;observed_at_ms:number;timing:string;chunk:number};
+export type Metrics={ttft_ms:number|null;total_ms:number;completion_tokens:number|null;count_source:string;output_tps:number|null;chunks:number;usage:{prompt_tokens:number;completion_tokens:number;total_tokens:number}|null;average_logprob:number|null;average_nll:number|null;low_probability_ratio:number|null;logprob_coverage:number};
+export type Point={ms:number;count:number|null;tps:number|null;interval:number|null;latency:number};
+export type Report={id:string;created:string;model:string;prompt:string;system:string;text:string;reasoning:string;tokens:Token[];metrics:Metrics;status:string;points?:Point[];endpoint:{name:string;url:string};settings:Record<string,unknown>};
+export type Run={id:string;model:string;text:string;reasoning:string;tokens:Token[];metrics:Metrics|null;points:Point[];status:string;error?:string;report?:Report};
+export type Caps={logprobs?:boolean;top_k?:boolean;seed?:boolean;stream_usage?:boolean};
+export type Endpoint={id:string;name:string;url:string;kind:string;models:string[];caps:Record<string,Caps>};
+export type Slot={endpoint_id:string;model:string};
+export type Settings={temperature:number;top_p:number;top_k:number|null;max_tokens:number;presence_penalty:number;frequency_penalty:number;logprobs:boolean;top_logprobs:number;seed:number|null;stream:boolean};
